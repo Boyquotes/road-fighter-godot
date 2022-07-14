@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/drifting.mp3-d6ab399f502ae3bffcc17aa0eeaf6829.mp3str"
+
+[deps]
+
+source_file="res://resources/sfx/drifting.mp3"
+dest_files=[ "res://.import/drifting.mp3-d6ab399f502ae3bffcc17aa0eeaf6829.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

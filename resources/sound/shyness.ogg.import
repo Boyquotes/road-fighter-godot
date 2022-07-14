@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/shyness.ogg-a0504813ce2b1972e8588b6a8ac74b40.oggstr"
+
+[deps]
+
+source_file="res://resources/sound/shyness.ogg"
+dest_files=[ "res://.import/shyness.ogg-a0504813ce2b1972e8588b6a8ac74b40.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

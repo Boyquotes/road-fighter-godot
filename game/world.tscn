@@ -1,0 +1,179 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://modules/player/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://resources/img/background_v2.png" type="Texture" id=2]
+[ext_resource path="res://game/world.gd" type="Script" id=3]
+[ext_resource path="res://game/font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://resources/sound/shyness.ogg" type="AudioStream" id=5]
+[ext_resource path="res://game/ui.gd" type="Script" id=6]
+[ext_resource path="res://modules/wall/wall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://resources/font/monogram.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 1024 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 8 )
+
+[node name="World" type="Node"]
+script = ExtResource( 3 )
+player = NodePath("ViewportContainer/Viewport/Player")
+ui = NodePath("UI")
+border = NodePath("ViewportContainer/Viewport/Border")
+bg = NodePath("ViewportContainer/Viewport/ParallaxBackground/ParallaxLayer/Background")
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1024, 1024 )
+handle_input_locally = false
+hdr = false
+usage = 0
+render_target_update_mode = 3
+audio_listener_enable_2d = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="ViewportContainer/Viewport"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ViewportContainer/Viewport/ParallaxBackground"]
+
+[node name="Background" type="Sprite" parent="ViewportContainer/Viewport/ParallaxBackground/ParallaxLayer"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+offset = Vector2( 256, 0 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 512, 1024 )
+
+[node name="Border" type="Area2D" parent="ViewportContainer/Viewport"]
+position = Vector2( 199, 0 )
+monitoring = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportContainer/Viewport/Border"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ViewportContainer/Viewport/Border"]
+position = Vector2( 428, 0 )
+shape = SubResource( 1 )
+
+[node name="Player" parent="ViewportContainer/Viewport" instance=ExtResource( 1 )]
+position = Vector2( 512, 864 )
+
+[node name="Node2D" type="Node2D" parent="ViewportContainer/Viewport"]
+
+[node name="Wall" parent="ViewportContainer/Viewport/Node2D" instance=ExtResource( 7 )]
+position = Vector2( 310, 100 )
+
+[node name="Wall2" parent="ViewportContainer/Viewport/Node2D" instance=ExtResource( 7 )]
+position = Vector2( 520, -50 )
+
+[node name="Node2D2" type="Node2D" parent="ViewportContainer/Viewport"]
+position = Vector2( 0, -350 )
+
+[node name="Wall" parent="ViewportContainer/Viewport/Node2D2" instance=ExtResource( 7 )]
+position = Vector2( 310, 100 )
+
+[node name="Wall2" parent="ViewportContainer/Viewport/Node2D2" instance=ExtResource( 7 )]
+position = Vector2( 520, -50 )
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+
+[node name="Frames" type="Label" parent="UI"]
+anchor_left = 0.785
+anchor_top = 0.03
+anchor_right = 0.785
+anchor_bottom = 0.03
+margin_left = 0.159973
+margin_top = 0.279999
+margin_right = 48.16
+margin_bottom = 26.28
+custom_fonts/font = ExtResource( 4 )
+text = "FPS"
+
+[node name="VelocityLabel" type="Label" parent="UI"]
+anchor_left = 0.785
+anchor_top = 0.188
+anchor_right = 0.785
+anchor_bottom = 0.188
+margin_left = 0.159973
+margin_top = 0.487991
+margin_right = 48.16
+margin_bottom = 26.488
+custom_fonts/font = ExtResource( 4 )
+text = "km/s"
+
+[node name="VelocityLevelsLabel" type="Label" parent="UI"]
+anchor_left = 0.785
+anchor_top = 0.259
+anchor_right = 0.785
+anchor_bottom = 0.259
+margin_left = 0.159973
+margin_top = 87.784
+margin_right = 180.16
+margin_bottom = 113.784
+custom_fonts/font = ExtResource( 4 )
+text = "Velocity Level:"
+
+[node name="VelocityLevels" type="HBoxContainer" parent="UI"]
+anchor_left = 0.785
+anchor_top = 0.295
+anchor_right = 0.943
+anchor_bottom = 0.345
+margin_left = 0.159973
+margin_top = 87.92
+margin_right = 0.367981
+margin_bottom = 87.72
+custom_constants/separation = 45
+
+[node name="1" type="Label" parent="UI/VelocityLevels"]
+margin_right = 24.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 2 )
+text = "1"
+
+[node name="2" type="Label" parent="UI/VelocityLevels"]
+modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
+margin_left = 69.0
+margin_right = 93.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 2 )
+text = "2"
+
+[node name="3" type="Label" parent="UI/VelocityLevels"]
+modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
+margin_left = 138.0
+margin_right = 162.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 2 )
+text = "3"
+
+[node name="Tutorial" type="Label" parent="UI"]
+anchor_left = 0.785
+anchor_top = 0.737
+anchor_right = 0.785
+anchor_bottom = 0.737
+margin_left = 0.159973
+margin_top = -57.688
+margin_right = 200.16
+margin_bottom = 258.312
+text = "Q: Quit
+Z: Accelerate
+X: Break
+
+Left and Right: Horizontal Move
+
+Shift: Increase Velocity Level
+Ctrl: Decrease Velocity Level"
+autowrap = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
+autoplay = true

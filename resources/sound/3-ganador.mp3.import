@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/3-ganador.mp3-6e6402ce48621c78698834a1711440dc.mp3str"
+
+[deps]
+
+source_file="res://resources/sound/3-ganador.mp3"
+dest_files=[ "res://.import/3-ganador.mp3-6e6402ce48621c78698834a1711440dc.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
